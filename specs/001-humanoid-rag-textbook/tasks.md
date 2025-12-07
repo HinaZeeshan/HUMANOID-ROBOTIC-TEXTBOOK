@@ -1,12 +1,10 @@
-   # Actionable Tasks: Humanoid Robotics Textbook & RAG Chatbot
+# Actionable Tasks: Humanoid Robotics Textbook & RAG Chatbot
 
-This document lists the actionable, dependency-ordered tasks required to implement the feature as described in `spec.md` and `plan.md`
+This document lists the actionable, dependency-ordered tasks required to implement the feature as described in `spec.md` and `plan.md`.
 
 ## Implementation Strategy
 
-The implementation will follow a phased approach, prioritizing foundational setup and then delivering user stories as independently
-  testable increments. The MVP (Minimum Viable Product) is the completion of User Story 1 and User Story 2, which delivers the core
-  educational content and the interactive RAG chatbot.
+The implementation will follow a phased approach, prioritizing foundational setup and then delivering user stories as independently testable increments. The MVP (Minimum Viable Product) is the completion of User Story 1 and User Story 2, which delivers the core educational content and the interactive RAG chatbot.
 
 ## Phase 1: Project Setup
 
@@ -54,7 +52,7 @@ These tasks establish the core components required by multiple user stories.
 **Goal**: Students can ask questions and receive relevant, accurate answers from an embedded RAG chatbot.
 **Independent Test**: Query the RAG chatbot for chapter-specific information and verify the accuracy and relevance of its responses.
 
-- [ ] T020 [US2] Implement the RAG ingestion script in `scripts/ingest_content.py` to read markdown files and upload them to the Verte AI RAG Corpus.
+- [ ] T020 [US2] Implement the RAG ingestion script in `scripts/ingest_content.py` to read markdown files and upload them to the Vertex AI RAG Corpus.
 - [ ] T021 [US2] Run the ingestion script to populate the RAG corpus with the chapter content.
 - [ ] T022 [US2] Implement the full backend logic for `POST /api/v1/chat` in `backend/main.py` to query the Vertex AI RAG service.
 - [ ] T023 [US2] Create the frontend `ChatKit` component in React at `docs/src/theme/Chatbot.js`.

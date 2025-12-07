@@ -10,7 +10,7 @@ Represents a single chapter in the Docusaurus textbook.
 | :--- | :--- | :--- | :--- |
 | `id` | `string` | A unique identifier for the chapter (e.g., the file slug). | Yes |
 | `title` | `string` | The title of the chapter. | Yes |
-| `content` | `string` (Markdown) | The full Markdown content of the chapter, including text, diagrams, and code. | Yes |   
+| `content` | `string` (Markdown) | The full Markdown content of the chapter, including text, diagrams, and code. | Yes |
 | `order` | `integer` | The numerical order of the chapter in the textbook. | Yes |
 
 ## 2. RAG Corpus
