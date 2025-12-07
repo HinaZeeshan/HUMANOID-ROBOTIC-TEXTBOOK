@@ -1,55 +1,47 @@
-# [PROJECT_NAME] Constitution
-<!-- Example: Spec Constitution, TaskFlow Constitution, etc. -->
+# Physical AI & Humanoid Robotics – Unified Book with Embedded RAG Chatbot Constitution
 
 ## Core Principles
 
-### [PRINCIPLE_1_NAME]
-<!-- Example: I. Library-First -->
-[PRINCIPLE_1_DESCRIPTION]
-<!-- Example: Every feature starts as a standalone library; Libraries must be self-contained, independently testable, documented; Clear purpose required - no organizational-only libraries -->
+### I. Technical Accuracy
+All robotics, AI, and implementation details must be technically accurate and verifiable.
 
-### [PRINCIPLE_2_NAME]
-<!-- Example: II. CLI Interface -->
-[PRINCIPLE_2_DESCRIPTION]
-<!-- Example: Every library exposes functionality via CLI; Text in/out protocol: stdin/args → stdout, errors → stderr; Support JSON + human-readable formats -->
+### II. Educational Clarity
+Content must be clear and accessible for intermediate-to-advanced AI/robotics learners.
 
-### [PRINCIPLE_3_NAME]
-<!-- Example: III. Test-First (NON-NEGOTIABLE) -->
-[PRINCIPLE_3_DESCRIPTION]
-<!-- Example: TDD mandatory: Tests written → User approved → Tests fail → Then implement; Red-Green-Refactor cycle strictly enforced -->
+### III. Full Reproducibility
+All code, simulations, and deployment steps must be fully reproducible.
 
-### [PRINCIPLE_4_NAME]
-<!-- Example: IV. Integration Testing -->
-[PRINCIPLE_4_DESCRIPTION]
-<!-- Example: Focus areas requiring integration tests: New library contract tests, Contract changes, Inter-service communication, Shared schemas -->
+### IV. Strict Adherence to Specified Tools and Architecture
+All development must strictly follow the defined tools and architectural patterns.
 
-### [PRINCIPLE_5_NAME]
-<!-- Example: V. Observability, VI. Versioning & Breaking Changes, VII. Simplicity -->
-[PRINCIPLE_5_DESCRIPTION]
-<!-- Example: Text I/O ensures debuggability; Structured logging required; Or: MAJOR.MINOR.BUILD format; Or: Start simple, YAGNI principles -->
+## Key Standards
 
-### [PRINCIPLE_6_NAME]
+- All technical explanations backed by official documentation (ROS 2, NVIDIA Isaac, Gazebo, etc.)
+- Every code snippet must be complete, runnable, and tested
+- Docusaurus site must build and deploy cleanly to GitHub Pages
+- RAG chatbot uses only: OpenAI Agents/ChatKit, FastAPI, Neon Postgres, Qdrant Cloud (free tier)
+- Chatbot must support whole-book queries and selected-text-only queries
+- Zero broken links, working live demos where applicable
 
+## Constraints
 
-[PRINCIPLE__DESCRIPTION]
+- Cover all 4 modules exactly as specified (ROS 2 → Gazebo/Unity → NVIDIA Isaac → VLA + Capstone)
+- Use only Spec-Kit Plus + Claude Code for content generation
+- Fully responsive Docusaurus design
+- RAG index built from final book markdown only (no external sources)
+- Deployment: GitHub Pages (book) + free-tier hosting (FastAPI backend)
 
-## [SECTION_2_NAME]
-<!-- Example: Additional Constraints, Security Requirements, Performance Standards, etc. -->
+## Success Criteria
 
-[SECTION_2_CONTENT]
-<!-- Example: Technology stack requirements, compliance standards, deployment policies, etc. -->
-
-## [SECTION_3_NAME]
-<!-- Example: Development Workflow, Review Process, Quality Gates, etc. -->
-
-[SECTION_3_CONTENT]
-<!-- Example: Code review requirements, testing gates, deployment approval process, etc. -->
+- Book successfully deployed and accessible on GitHub Pages
+- RAG chatbot embedded and fully functional in the live book
+- Chatbot accurately answers questions using full context and selected text only
+- All code examples run without modification in standard environments
+- 100% module coverage with working capstone integration example
 
 ## Governance
-<!-- Example: Constitution supersedes all other practices; Amendments require documentation, approval, migration plan -->
+Constitution supersedes all other practices; Amendments require documentation, approval, migration plan
 
-[GOVERNANCE_RULES]
-<!-- Example: All PRs/reviews must verify compliance; Complexity must be justified; Use [GUIDANCE_FILE] for runtime development guidance -->
+All PRs/reviews must verify compliance; Complexity must be justified; Use CLAUDE.md for runtime development guidance
 
-**Version**: [CONSTITUTION_VERSION] | **Ratified**: [RATIFICATION_DATE] | **Last Amended**: [LAST_AMENDED_DATE]
-<!-- Example: Version: 2.1.1 | Ratified: 2025-06-13 | Last Amended: 2025-07-16 -->
+**Version**: 1.0.0 | **Ratified**: 2025-12-07 | **Last Amended**: 2025-12-07
