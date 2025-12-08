@@ -55,9 +55,9 @@ These tasks establish the core components required by multiple user stories.
 - [ ] T020 [US2] Implement the RAG ingestion script in `scripts/ingest_content.py` to read markdown files and upload them to the Vertex AI RAG Corpus.
 - [ ] T021 [US2] Run the ingestion script to populate the RAG corpus with the chapter content.
 - [ ] T022 [US2] Implement the full backend logic for `POST /api/v1/chat` in `backend/main.py` to query the Vertex AI RAG service.
-- [ ] T023 [US2] Create the frontend `ChatKit` component in React at `docs/src/theme/Chatbot.js`.
+- [x] T023 [US2] Create the frontend `ChatKit` component in React at `docs/src/theme/Chatbot.tsx`.
 - [ ] T024 [US2] Implement the API call from the `Chatbot.js` component to the backend `/api/v1/chat` endpoint.
-- [ ] T025 [US2] Add the `Chatbot.js` component to the main Docusaurus layout at `docs/src/theme/Layout.js`.
+- [x] T025 [US2] Add the `Chatbot.tsx` component to the main Docusaurus layout at `docs/src/theme/Layout.js`.
 
 ## Phase 6: User Story 4 - Access Docusaurus-Deployed Textbook
 
