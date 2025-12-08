@@ -19,40 +19,42 @@
     
     ## 2.3 Creating a Simple URDF Model (Placeholder for Code Example)
     
-     1 <?xml version="1.0"?>
-    2 <robot name="simple_arm">        
-    3 
-    4   <link name="base_link">        
-    5     <visual>
-    6       <geometry>
-    7         <box size="0.1 0.1 0.1"/>
-    8       </geometry>
-    9       <material name="blue">     
-   10         <color rgba="0 0 1 1"/>  
-   11       </material>
-   12     </visual>
-   13   </link>
-   14 
-   15   <link name="link1">
-   16     <visual>
-   17       <geometry>
-   18         <cylinder length="0.5" radius="0.05"/>
-   19       </geometry>
-   20       <material name="red">
-   21         <color rgba="1 0 0 1"/>
-   22       </material>
-   23     </visual>
-   24   </link>
-   25 
-   26   <joint name="joint1" type="revolute">
-   27     <parent link="base_link"/>
-   28     <child link="link1"/>
-   29     <origin xyz="0 0 0.05" rpy="0 0 0"/>
-   30     <axis xyz="0 0 1"/>
-   31     <limit lower="-1.57" upper="1.57" effort="100" velocity="100"/>
-   32   </joint>
-   33 
-   34 </robot>
+    ```xml
+ <?xml version="1.0"?>
+<robot name="simple_arm">        
+
+  <link name="base_link">        
+    <visual>
+      <geometry>
+        <box size="0.1 0.1 0.1"/>
+      </geometry>
+      <material name="blue">     
+        <color rgba="0 0 1 1"/>  
+      </material>
+    </visual>
+  </link>
+
+  <link name="link1">
+    <visual>
+      <geometry>
+        <cylinder length="0.5" radius="0.05"/>
+      </geometry>
+      <material name="red">
+        <color rgba="1 0 0 1"/>
+      </material>
+    </visual>
+  </link>
+
+  <joint name="joint1" type="revolute">
+    <parent link="base_link"/>
+    <child link="link1"/>
+    <origin xyz="0 0 0.05" rpy="0 0 0"/>
+    <axis xyz="0 0 1"/>
+    <limit lower="-1.57" upper="1.57" effort="100" velocity="100"/>
+  </joint>
+
+</robot>
+```
   
     
     ## 2.4 Visualizing URDF Models

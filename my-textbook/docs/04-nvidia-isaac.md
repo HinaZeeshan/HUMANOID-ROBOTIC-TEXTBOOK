@@ -19,6 +19,7 @@
     
     ## 4.4 Your First Robot in Isaac Sim (Placeholder for Code Example)
    
+```python
       from omni.isaac.kit import SimulationApp
      
      # Configuration for the simulation
@@ -84,6 +85,7 @@
   
     # Shutdown the simulation
     simulation_app.close()
+```
 
     ## 4.5 Further Reading
    
