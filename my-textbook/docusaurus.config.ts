@@ -50,6 +50,12 @@ const config: Config = {
       },
       items: [
         {
+          type: 'docSidebar',
+          sidebarId: 'tutorialSidebar',
+          position: 'left',
+          label: 'Tutorial',
+        },
+        {
           href: 'https://github.com/HinaZeeshan/humanoid-robotics-textbook', 
           label: 'GitHub',
           position: 'right',
