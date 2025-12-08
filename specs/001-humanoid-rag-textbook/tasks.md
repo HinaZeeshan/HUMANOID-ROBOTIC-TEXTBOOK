@@ -81,6 +81,7 @@ These tasks establish the core components required by multiple user stories.
   - `(Foundational) -> [US1, US2, US3, US4]`
   - `[US2] -> [US1, US3]` (The chatbot is most useful once there is content to ingest)
   - `[US4] -> [US1, US2, US3]` (Deployment is the final step)
+- Minor change to trigger deployment workflow.
 - **Parallel Opportunities**:
   - **Content Creation**: Tasks for writing different chapters ([US1], [US3]) can be done in parallel (`T011` through `T019`).
   - **UI/Backend Split**: The frontend `ChatKit` component (`T023`) can be developed in parallel with the backend API (`T022`), using the mock from `T008` as the interface.
