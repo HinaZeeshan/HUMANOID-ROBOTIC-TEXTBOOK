@@ -10,42 +10,42 @@ The implementation will follow a phased approach, prioritizing foundational setu
 
 These tasks initialize the project structure.
 
-- [ ] T001 Initialize a Docusaurus project in the `./docs` directory.
-- [ ] T002 Create a directory for the backend service at `./backend`.
-- [ ] T003 Initialize a Python project with FastAPI in `./backend` and add a placeholder `main.py`.
-- [ ] T004 Create a directory for automation scripts at `./scripts`.
-- [ ] T005 Create a directory for test assets at `./tests`.
-- [ ] T006 Update the `.gitignore` file to exclude common Python and Node.js artifacts.
+- [x] T001 Initialize a Docusaurus project in the `./docs` directory.
+- [x] T002 Create a directory for the backend service at `./backend`.
+- [x] T003 Initialize a Python project with FastAPI in `./backend` and add a placeholder `main.py`.
+- [x] T004 Create a directory for automation scripts at `./scripts`.
+- [x] T005 Create a directory for test assets at `./tests`.
+- [x] T006 Update the `.gitignore` file to exclude common Python and Node.js artifacts.
 
 ## Phase 2: Foundational Implementation
 
 These tasks establish the core components required by multiple user stories.
 
-- [ ] T007 Configure the basic Docusaurus site settings in `docs/docusaurus.config.js` (e.g., site title, theme).
+- [] T007 Configure the basic Docusaurus site settings in `docs/docusaurus.config.js` (e.g., site title, theme).
 - [ ] T008 [P] Implement the mock API endpoint `POST /api/v1/chat` in `backend/main.py` that returns a hardcoded response.
-- [ ] T009 [P] Create the basic structure for the GitHub Actions deployment workflow in `.github/workflows/deploy.yml`.
+- [x] T009 [P] Create the basic structure for the GitHub Actions deployment workflow in `.github/workflows/deploy.yml`.
 
 ## Phase 3: User Story 1 - Learn Humanoid Robotics Core Concepts
 
 **Goal**: Students can understand the fundamental concepts and pipeline of building a humanoid robot system.
 **Independent Test**: Review the textbook content for clarity, correctness, and completeness across all core modules.
 
-- [ ] T010 [US1] Create placeholder Markdown files for 8 chapters in `docs/docs/`.
-- [ ] T011 [P] [US1] Write the content for Chapter 1 (ROS 2) in `docs/docs/01-ros2-basics.md`.
-- [ ] T012 [P] [US1] Write the content for Chapter 2 (URDF) in `docs/docs/02-urdf-models.md`.
-- [ ] T013 [P] [US1] Write the content for Chapter 3 (Digital Twin) in `docs/docs/03-digital-twins.md`.
-- [ ] T014 [P] [US1] Write the content for Chapter 4 (NVIDIA Isaac) in `docs/docs/04-nvidia-isaac.md`.
-- [ ] T015 [P] [US1] Write the content for Chapter 5 (Vision-Language-Action) in `docs/docs/05-vla-models.md`.
-- [ ] T016 [P] [US1] Write the content for the remaining chapters in `docs/docs/`.
+- [x] T010 [US1] Create placeholder Markdown files for 8 chapters in `docs/docs/`.
+- [x] T011 [P] [US1] Write the content for Chapter 1 (ROS 2) in `docs/docs/01-ros2-basics.md`.
+- [x] T012 [P] [US1] Write the content for Chapter 2 (URDF) in `docs/docs/02-urdf-models.md`.
+- [x] T013 [P] [US1] Write the content for Chapter 3 (Digital Twin) in `docs/docs/03-digital-twins.md`.
+- [x] T014 [P] [US1] Write the content for Chapter 4 (NVIDIA Isaac) in `docs/docs/04-nvidia-isaac.md`.
+- [x] T015 [P] [US1] Write the content for Chapter 5 (Vision-Language-Action) in `docs/docs/05-vla-models.md`.
+- [x] T016 [P] [US1] Write the content for the remaining chapters in `docs/docs/`.
 
 ## Phase 4: User Story 3 - Access Practical Steps for Building Systems
 
 **Goal**: Students can use practical guidance and code to build system components.
 **Independent Test**: Follow the practical steps and run the provided code examples for each module to verify they work as described.
 
-- [ ] T017 [P] [US3] Add runnable code examples for ROS 2 to `docs/docs/01-ros2-basics.md`.
-- [ ] T018 [P] [US3] Add runnable code examples for URDF to `docs/docs/02-urdf-models.md`.
-- [ ] T019 [P] [US3] Add runnable code examples for Isaac Sim to `docs/docs/04-nvidia-isaac.md`.
+- [x] T017 [P] [US3] Add runnable code examples for ROS 2 to `docs/docs/01-ros2-basics.md`.
+- [x] T018 [P] [US3] Add runnable code examples for URDF to `docs/docs/02-urdf-models.md`.
+- [x] T019 [P] [US3] Add runnable code examples for Isaac Sim to `docs/docs/04-nvidia-isaac.md`.
 
 ## Phase 5: User Story 2 - Interact with RAG Chatbot
 
@@ -64,7 +64,7 @@ These tasks establish the core components required by multiple user stories.
 **Goal**: Students can access the textbook online via a reliably deployed Docusaurus site.
 **Independent Test**: Access the deployed site and verify all content and the chatbot render and function correctly.
 
-- [ ] T026 [US4] Finalize the GitHub Actions workflow in `.github/workflows/deploy.yml` to build and deploy the Docusaurus site to GitHub Pages.
+- [x] T026 [US4] Finalize the GitHub Actions workflow in `.github/workflows/deploy.yml` to build and deploy the Docusaurus site to GitHub Pages.
 - [ ] T027 [US4] Trigger the deployment workflow and verify the site is live and functional at the target GitHub Pages URL.
 
 ## Phase 7: Polish & Cross-Cutting Concerns
