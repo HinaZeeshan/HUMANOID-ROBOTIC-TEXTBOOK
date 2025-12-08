@@ -11,11 +11,11 @@ const config: Config = {
   url: 'https://HinaZeeshan.github.io',
 
   // For GitHub pages deployment: '/<projectName>/'
-  baseUrl: '/humanoid-robotics-textbook/',
+  baseUrl: '/HUMANOID-ROBOTIC-TEXTBOOK/',
 
   // GitHub pages deployment config
   organizationName: 'HinaZeeshan',
-  projectName: 'humanoid-robotics-textbook',
+  projectName: 'HUMANOID-ROBOTIC-TEXTBOOK',
 
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
