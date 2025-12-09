@@ -19,7 +19,7 @@ All development must strictly follow the defined tools and architectural pattern
 - All technical explanations backed by official documentation (ROS 2, NVIDIA Isaac, Gazebo, etc.)
 - Every code snippet must be complete, runnable, and tested
 - Docusaurus site must build and deploy cleanly to GitHub Pages
-- RAG chatbot uses only: OpenAI Agents/ChatKit, FastAPI, Neon Postgres, Qdrant Cloud (free tier)
+- RAG chatbot uses only: Cohere SDK, FastAPI, Neon Postgres, Qdrant Cloud (free tier)
 - Chatbot must support whole-book queries and selected-text-only queries
 - Zero broken links, working live demos where applicable
 

@@ -1,0 +1,400 @@
+# OpenAPI Specification: RAG Service for Humanoid Robotics Book
+
+openapi: 3.0.3
+info:
+  title: Humanoid Robotics Book RAG API
+  description: API for Retrieval-Augmented Generation chatbot service for the Humanoid Robotics Book
+  version: 1.0.0
+  contact:
+    name: Robotics Book Team
+    email: support@robotics-book.example.com
+
+servers:
+  - url: http://localhost:8000
+    description: Development server
+  - url: https://api.robotics-book.example.com
+    description: Production server
+
+paths:
+  /health:
+    get:
+      summary: Health check endpoint
+      description: Returns the health status of the RAG service
+      responses:
+        '200':
+          description: Service is healthy
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: "healthy"
+                  timestamp:
+                    type: string
+                    format: date-time
+                    example: "2025-12-09T10:00:00Z"
+
+  /api/v1/rag/query:
+    post:
+      summary: Query the RAG system
+      description: Submit a query to the RAG system and receive an AI-generated response based on book content
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - query
+              properties:
+                query:
+                  type: string
+                  description: The user's query about the book content
+                  example: "Explain how ROS 2 nodes communicate with each other"
+                context_filter:
+                  type: string
+                  description: Optional filter to limit search to specific module (e.g., "module_1" for ROS 2)
+                  example: "module_1"
+                selected_text_only:
+                  type: boolean
+                  description: If true, only search within the provided selected_text
+                  default: false
+                selected_text:
+                  type: string
+                  description: Text selected by user for focused search (required if selected_text_only is true)
+                  example: "ROS 2 nodes communicate using topics, services, and actions..."
+                max_chunks:
+                  type: integer
+                  description: Maximum number of context chunks to retrieve
+                  default: 5
+                  minimum: 1
+                  maximum: 10
+      responses:
+        '200':
+          description: Successful response from the RAG system
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  response:
+                    type: string
+                    description: AI-generated response to the query
+                    example: "ROS 2 nodes communicate using a publish-subscribe model with topics..."
+                  sources:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        title:
+                          type: string
+                          description: Title of the source content
+                        module:
+                          type: string
+                          description: Module where the source is located
+                        chapter:
+                          type: string
+                          description: Chapter where the source is located
+                        relevance_score:
+                          type: number
+                          format: float
+                          description: Relevance score of the source chunk (0-1)
+                  query_time_ms:
+                    type: integer
+                    description: Time taken to process the query in milliseconds
+        '400':
+          description: Bad request - invalid input parameters
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: "Query is required"
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: "Internal server error occurred"
+
+  /api/v1/content/modules:
+    get:
+      summary: Get all book modules
+      description: Retrieve a list of all book modules with their metadata
+      responses:
+        '200':
+          description: List of all book modules
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                      description: Unique identifier for the module
+                    title:
+                      type: string
+                      description: Title of the module
+                    slug:
+                      type: string
+                      description: URL-friendly identifier
+                    description:
+                      type: string
+                      description: Brief description of the module content
+                    order:
+                      type: integer
+                      description: Sequential order of the module
+                    word_count:
+                      type: integer
+                      description: Estimated word count for the module
+                    estimated_time:
+                      type: integer
+                      description: Estimated reading time in minutes
+                    learning_objectives:
+                      type: array
+                      items:
+                        type: string
+                      description: List of learning objectives
+                    prerequisites:
+                      type: array
+                      items:
+                        type: string
+                      description: Prerequisites for this module
+
+  /api/v1/content/chapters/{module_slug}:
+    get:
+      summary: Get chapters for a specific module
+      description: Retrieve all chapters for a specified module
+      parameters:
+        - name: module_slug
+          in: path
+          required: true
+          schema:
+            type: string
+            example: "ros2-basics"
+      responses:
+        '200':
+          description: List of chapters for the specified module
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                      description: Unique identifier for the chapter
+                    title:
+                      type: string
+                      description: Title of the chapter
+                    slug:
+                      type: string
+                      description: URL-friendly identifier
+                    content:
+                      type: string
+                      description: Markdown content of the chapter (truncated)
+                    order:
+                      type: integer
+                      description: Order within the module
+                    word_count:
+                      type: integer
+                      description: Word count for the chapter
+                    estimated_time:
+                      type: integer
+                      description: Estimated reading time in minutes
+        '404':
+          description: Module not found
+
+  /api/v1/chat/sessions:
+    post:
+      summary: Create a new chat session
+      description: Create a new chat session for a user
+      responses:
+        '200':
+          description: New chat session created
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  session_id:
+                    type: string
+                    description: Unique identifier for the chat session
+                    example: "sess_abc123"
+                  created_at:
+                    type: string
+                    format: date-time
+                    example: "2025-12-09T10:00:00Z"
+
+  /api/v1/chat/sessions/{session_id}/messages:
+    get:
+      summary: Get messages from a chat session
+      description: Retrieve all messages from a specific chat session
+      parameters:
+        - name: session_id
+          in: path
+          required: true
+          schema:
+            type: string
+            example: "sess_abc123"
+      responses:
+        '200':
+          description: List of messages in the chat session
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                      description: Unique identifier for the message
+                    role:
+                      type: string
+                      enum: [user, assistant]
+                      description: Role of the message sender
+                    content:
+                      type: string
+                      description: The message content
+                    created_at:
+                      type: string
+                      format: date-time
+                    relevance_score:
+                      type: number
+                      format: float
+                      description: Relevance score of the response (0-1)
+        '404':
+          description: Chat session not found
+
+    post:
+      summary: Add a message to a chat session
+      description: Add a new message to an existing chat session and get a response
+      parameters:
+        - name: session_id
+          in: path
+          required: true
+          schema:
+            type: string
+            example: "sess_abc123"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - content
+              properties:
+                content:
+                  type: string
+                  description: The user's message content
+                  example: "How do ROS 2 services work?"
+                context_filter:
+                  type: string
+                  description: Optional filter to limit search to specific module
+                  example: "module_1"
+                selected_text_only:
+                  type: boolean
+                  description: If true, only search within the provided selected_text
+                  default: false
+                selected_text:
+                  type: string
+                  description: Text selected by user for focused search
+      responses:
+        '200':
+          description: New message added and response generated
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                        description: Unique identifier for the message
+                      role:
+                        type: string
+                        enum: [user, assistant]
+                        description: Role of the message sender
+                      content:
+                        type: string
+                        description: The message content
+                      created_at:
+                        type: string
+                        format: date-time
+                      relevance_score:
+                        type: number
+                        format: float
+                        description: Relevance score of the response (0-1)
+        '404':
+          description: Chat session not found
+        '400':
+          description: Bad request - invalid input parameters
+
+components:
+  schemas:
+    QueryRequest:
+      type: object
+      required:
+        - query
+      properties:
+        query:
+          type: string
+          description: The user's query about the book content
+        context_filter:
+          type: string
+          description: Optional filter to limit search to specific module
+        selected_text_only:
+          type: boolean
+          description: If true, only search within the provided selected_text
+        selected_text:
+          type: string
+          description: Text selected by user for focused search
+        max_chunks:
+          type: integer
+          description: Maximum number of context chunks to retrieve
+          default: 5
+          minimum: 1
+          maximum: 10
+
+    QueryResponse:
+      type: object
+      properties:
+        response:
+          type: string
+          description: AI-generated response to the query
+        sources:
+          type: array
+          items:
+            type: object
+            properties:
+              title:
+                type: string
+                description: Title of the source content
+              module:
+                type: string
+                description: Module where the source is located
+              chapter:
+                type: string
+                description: Chapter where the source is located
+              relevance_score:
+                type: number
+                format: float
+                description: Relevance score of the source chunk (0-1)
+        query_time_ms:
+          type: integer
+          description: Time taken to process the query in milliseconds

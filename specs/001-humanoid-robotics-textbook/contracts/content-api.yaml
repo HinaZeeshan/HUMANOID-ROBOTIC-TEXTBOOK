@@ -1,0 +1,487 @@
+# OpenAPI Specification: Content Management API for Humanoid Robotics Book
+
+openapi: 3.0.3
+info:
+  title: Humanoid Robotics Book Content API
+  description: API for managing book content and retrieving structured information
+  version: 1.0.0
+  contact:
+    name: Robotics Book Team
+    email: content@robotics-book.example.com
+
+servers:
+  - url: http://localhost:8000
+    description: Development server
+  - url: https://api.robotics-book.example.com
+    description: Production server
+
+paths:
+  /api/v1/content/modules:
+    get:
+      summary: Get all book modules
+      description: Retrieve a list of all book modules with their metadata
+      responses:
+        '200':
+          description: List of all book modules
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                      description: Unique identifier for the module
+                    title:
+                      type: string
+                      description: Title of the module
+                    slug:
+                      type: string
+                      description: URL-friendly identifier
+                    description:
+                      type: string
+                      description: Brief description of the module content
+                    order:
+                      type: integer
+                      description: Sequential order of the module
+                    word_count:
+                      type: integer
+                      description: Estimated word count for the module
+                    estimated_time:
+                      type: integer
+                      description: Estimated reading time in minutes
+                    learning_objectives:
+                      type: array
+                      items:
+                        type: string
+                      description: List of learning objectives
+                    prerequisites:
+                      type: array
+                      items:
+                        type: string
+                      description: Prerequisites for this module
+                    created_at:
+                      type: string
+                      format: date-time
+                      description: Module creation timestamp
+                    updated_at:
+                      type: string
+                      format: date-time
+                      description: Module last updated timestamp
+
+  /api/v1/content/modules/{module_id}:
+    get:
+      summary: Get a specific module
+      description: Retrieve details of a specific book module
+      parameters:
+        - name: module_id
+          in: path
+          required: true
+          schema:
+            type: string
+            example: "module_1"
+      responses:
+        '200':
+          description: Details of the specified module
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    description: Unique identifier for the module
+                  title:
+                    type: string
+                    description: Title of the module
+                  slug:
+                    type: string
+                    description: URL-friendly identifier
+                  description:
+                    type: string
+                    description: Brief description of the module content
+                  order:
+                    type: integer
+                    description: Sequential order of the module
+                  word_count:
+                    type: integer
+                    description: Estimated word count for the module
+                  estimated_time:
+                    type: integer
+                    description: Estimated reading time in minutes
+                  learning_objectives:
+                    type: array
+                    items:
+                      type: string
+                    description: List of learning objectives
+                  prerequisites:
+                    type: array
+                    items:
+                      type: string
+                    description: Prerequisites for this module
+                  chapters:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                          description: Unique identifier for the chapter
+                        title:
+                          type: string
+                          description: Title of the chapter
+                        slug:
+                          type: string
+                          description: URL-friendly identifier
+                        order:
+                          type: integer
+                          description: Order within the module
+                        word_count:
+                          type: integer
+                          description: Word count for the chapter
+                        estimated_time:
+                          type: integer
+                          description: Estimated reading time in minutes
+                        section_headers:
+                          type: array
+                          items:
+                            type: string
+                          description: List of section headers in the chapter
+                        diagram_count:
+                          type: integer
+                          description: Number of diagrams in the chapter
+                        example_count:
+                          type: integer
+                          description: Number of code examples in the chapter
+                  created_at:
+                    type: string
+                    format: date-time
+                    description: Module creation timestamp
+                  updated_at:
+                    type: string
+                    format: date-time
+                    description: Module last updated timestamp
+        '404':
+          description: Module not found
+
+  /api/v1/content/chapters/{chapter_id}:
+    get:
+      summary: Get a specific chapter
+      description: Retrieve content and details of a specific chapter
+      parameters:
+        - name: chapter_id
+          in: path
+          required: true
+          schema:
+            type: string
+            example: "chapter_1_1"
+      responses:
+        '200':
+          description: Content and details of the specified chapter
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    description: Unique identifier for the chapter
+                  module_id:
+                    type: string
+                    description: Reference to parent module
+                  title:
+                    type: string
+                    description: Title of the chapter
+                  slug:
+                    type: string
+                    description: URL-friendly identifier
+                  content:
+                    type: string
+                    description: Full markdown content of the chapter
+                  order:
+                    type: integer
+                    description: Order within the module
+                  word_count:
+                    type: integer
+                    description: Word count for the chapter
+                  estimated_time:
+                    type: integer
+                    description: Estimated reading time in minutes
+                  section_headers:
+                    type: array
+                    items:
+                      type: string
+                    description: List of section headers in the chapter
+                  diagram_count:
+                    type: integer
+                    description: Number of diagrams in the chapter
+                  example_count:
+                    type: integer
+                    description: Number of code examples in the chapter
+                  content_blocks:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                          description: Unique identifier for the content block
+                        type:
+                          type: string
+                          enum: [text, code, diagram, example, exercise]
+                          description: Type of content block
+                        content:
+                          type: string
+                          description: The actual content
+                        order:
+                          type: integer
+                          description: Order within the chapter
+                        title:
+                          type: string
+                          description: Title for the content block
+                        language:
+                          type: string
+                          description: For code blocks (python, cpp, bash, etc.)
+                        caption:
+                          type: string
+                          description: Caption for diagrams/examples
+                  citations:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                          description: Unique identifier for the citation
+                        citation_text:
+                          type: string
+                          description: Full APA-formatted citation
+                        url:
+                          type: string
+                          format: uri
+                          description: URL if available
+                        author:
+                          type: string
+                          description: Author of the source
+                        title:
+                          type: string
+                          description: Title of the source
+                        publication_info:
+                          type: string
+                          description: Publication details
+                  created_at:
+                    type: string
+                    format: date-time
+                    description: Chapter creation timestamp
+                  updated_at:
+                    type: string
+                    format: date-time
+                    description: Chapter last updated timestamp
+        '404':
+          description: Chapter not found
+
+  /api/v1/content/search:
+    get:
+      summary: Search book content
+      description: Search across all book content with various filters
+      parameters:
+        - name: q
+          in: query
+          required: true
+          schema:
+            type: string
+            example: "ROS 2 nodes"
+          description: Search query string
+        - name: module
+          in: query
+          required: false
+          schema:
+            type: string
+            example: "module_1"
+          description: Filter search to specific module
+        - name: limit
+          in: query
+          required: false
+          schema:
+            type: integer
+            default: 10
+            minimum: 1
+            maximum: 50
+          description: Maximum number of results to return
+        - name: type
+          in: query
+          required: false
+          schema:
+            type: string
+            enum: [all, text, code, diagram, example]
+            default: all
+          description: Filter by content type
+      responses:
+        '200':
+          description: Search results
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  results:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                          description: Unique identifier for the content
+                        type:
+                          type: string
+                          enum: [chapter, section, content_block]
+                          description: Type of the content match
+                        title:
+                          type: string
+                          description: Title of the content
+                        module:
+                          type: string
+                          description: Module containing the content
+                        chapter:
+                          type: string
+                          description: Chapter containing the content
+                        content_preview:
+                          type: string
+                          description: Preview of the matching content
+                        relevance_score:
+                          type: number
+                          format: float
+                          description: Relevance score of the match (0-1)
+                        url:
+                          type: string
+                          format: uri
+                          description: URL to the content in the book
+                  total_results:
+                    type: integer
+                    description: Total number of matching results
+                  query_time_ms:
+                    type: integer
+                    description: Time taken to process the search in milliseconds
+        '400':
+          description: Bad request - invalid search parameters
+
+  /api/v1/content/modules/{module_id}/toc:
+    get:
+      summary: Get table of contents for a module
+      description: Retrieve the hierarchical table of contents for a specific module
+      parameters:
+        - name: module_id
+          in: path
+          required: true
+          schema:
+            type: string
+            example: "module_1"
+      responses:
+        '200':
+          description: Table of contents for the specified module
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  module:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                        description: Unique identifier for the module
+                      title:
+                        type: string
+                        description: Title of the module
+                      order:
+                        type: integer
+                        description: Sequential order of the module
+                  chapters:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                          description: Unique identifier for the chapter
+                        title:
+                          type: string
+                          description: Title of the chapter
+                        order:
+                          type: integer
+                          description: Order within the module
+                        sections:
+                          type: array
+                          items:
+                            type: object
+                            properties:
+                              id:
+                                type: string
+                                description: Unique identifier for the section
+                              title:
+                                type: string
+                                description: Title of the section
+                              level:
+                                type: integer
+                                description: Heading level (1-6)
+                              order:
+                                type: integer
+                                description: Order within the chapter
+        '404':
+          description: Module not found
+
+  /api/v1/content/stats:
+    get:
+      summary: Get content statistics
+      description: Retrieve overall statistics about the book content
+      responses:
+        '200':
+          description: Content statistics
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  total_modules:
+                    type: integer
+                    description: Total number of modules
+                  total_chapters:
+                    type: integer
+                    description: Total number of chapters
+                  total_word_count:
+                    type: integer
+                    description: Total word count across all content
+                  total_diagrams:
+                    type: integer
+                    description: Total number of diagrams
+                  total_examples:
+                    type: integer
+                    description: Total number of code examples
+                  estimated_reading_time:
+                    type: integer
+                    description: Estimated total reading time in minutes
+                  last_updated:
+                    type: string
+                    format: date-time
+                    description: When the content was last updated
+                  modules:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                          description: Module identifier
+                        title:
+                          type: string
+                          description: Module title
+                        word_count:
+                          type: integer
+                          description: Word count for the module
+                        chapter_count:
+                          type: integer
+                          description: Number of chapters in the module
+                        estimated_time:
+                          type: integer
+                          description: Estimated reading time for the module in minutes
