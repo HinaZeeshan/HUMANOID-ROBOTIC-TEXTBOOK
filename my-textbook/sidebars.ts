@@ -3,14 +3,11 @@ import type {SidebarsConfig} from '@docusaurus/plugin-content-docs';
 const sidebars: SidebarsConfig = {
   tutorialSidebar: [
     'intro',
-    'ros2-basics',
-    'urdf-models',
-    'digital-twins',
-    'nvidia-isaac',
-    'vla-models',
-    'humanoid-kinematics',
-    'motion-planning',
-    'capstone-project',
+    '01-ros2-basics',
+    '02-digital-twins',
+    '03-ai-robot-brain',
+    '04-vla-models',
+    '05-capstone-project',
     {
       type: 'category',
       label: 'Tutorial - Basics',
