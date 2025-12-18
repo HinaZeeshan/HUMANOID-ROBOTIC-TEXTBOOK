@@ -1,5 +1,6 @@
 ---
 title: "Module 5: Capstone Project - Complete Integration"
+id: "capstone-integration"
 sidebar_position: 5
 ---
 

@@ -1,30 +1,233 @@
 /**
- * Any CSS included here will be global. The classic template
- * bundles Infima by default. Infima is a CSS framework designed to
- * work well for content-centric websites.
+ * Custom CSS for Docusaurus Book Theme UI Redesign (Black & Green)
+ * Implements dark-first theme with #0b0f14 background and #e6f4ea text
  */
 
-/* You can override the default Infima variables here. */
+/* Dark theme CSS variables */
 :root {
-  --ifm-color-primary: #2e8555;
-  --ifm-color-primary-dark: #29784c;
-  --ifm-color-primary-darker: #277148;
-  --ifm-color-primary-darkest: #205d3b;
-  --ifm-color-primary-light: #33925d;
-  --ifm-color-primary-lighter: #359962;
-  --ifm-color-primary-lightest: #3cad6e;
+  --ifm-color-primary: #00c853;
+  --ifm-color-primary-dark: #00b249;
+  --ifm-color-primary-darker: #00a845;
+  --ifm-color-primary-darkest: #008a38;
+  --ifm-color-primary-light: #0ed159;
+  --ifm-color-primary-lighter: #18d360;
+  --ifm-color-primary-lightest: #35da72;
+  --ifm-background-color: #0b0f14;
+  --ifm-font-color-base: #e6f4ea;
+  --ifm-heading-color: #e6f4ea;
+  --ifm-menu-color: #e6f4ea;
+  --ifm-menu-color-active: #00c853;
+  --ifm-menu-link-hover-bg-color: #1a232a;
+  --ifm-navbar-link-hover-color: #00c853;
+  --ifm-footer-link-hover-color: #00c853;
+  --ifm-code-background: #1a232a;
+  --ifm-code-color: #e6f4ea;
+  --ifm-table-border-color: #1a232a;
+  --ifm-table-header-background: #1a232a;
+  --ifm-toc-border-color: #1a232a;
+  --ifm-color-content: #e6f4ea;
+  --ifm-color-content-secondary: #c2e3d2;
+  --ifm-global-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+  --ifm-card-background-color: #1a232a;
   --ifm-code-font-size: 95%;
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
 }
 
-/* For readability concerns, you should choose a lighter palette in dark mode. */
+/* Dark theme overrides for dark mode */
 [data-theme='dark'] {
-  --ifm-color-primary: #25c2a0;
-  --ifm-color-primary-dark: #21af90;
-  --ifm-color-primary-darker: #1fa588;
-  --ifm-color-primary-darkest: #1a8870;
-  --ifm-color-primary-light: #29d5b0;
-  --ifm-color-primary-lighter: #32d8b4;
-  --ifm-color-primary-lightest: #4fddbf;
+  --ifm-color-primary: #00c853;
+  --ifm-color-primary-dark: #00b249;
+  --ifm-color-primary-darker: #00a845;
+  --ifm-color-primary-darkest: #008a38;
+  --ifm-color-primary-light: #0ed159;
+  --ifm-color-primary-lighter: #18d360;
+  --ifm-color-primary-lightest: #35da72;
+  --ifm-background-color: #0b0f14;
+  --ifm-font-color-base: #e6f4ea;
+  --ifm-heading-color: #e6f4ea;
+  --ifm-menu-color: #e6f4ea;
+  --ifm-menu-color-active: #00c853;
+  --ifm-menu-link-hover-bg-color: #1a232a;
+  --ifm-navbar-link-hover-color: #00c853;
+  --ifm-footer-link-hover-color: #00c853;
+  --ifm-code-background: #1a232a;
+  --ifm-code-color: #e6f4ea;
+  --ifm-table-border-color: #1a232a;
+  --ifm-table-header-background: #1a232a;
+  --ifm-toc-border-color: #1a232a;
+  --ifm-color-content: #e6f4ea;
+  --ifm-color-content-secondary: #c2e3d2;
+  --ifm-global-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+  --ifm-card-background-color: #1a232a;
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
+}
+
+/* WCAG AA contrast compliance for text elements */
+.navbar {
+  background-color: #0b0f14;
+  color: #e6f4ea;
+}
+
+.navbar__link {
+  color: #e6f4ea;
+}
+
+.menu {
+  background-color: #0b0f14;
+}
+
+.menu__link {
+  color: #e6f4ea;
+}
+
+.footer {
+  background-color: #0b0f14;
+  color: #e6f4ea;
+}
+
+/* Style H1-H4 headings to match theme */
+.theme-doc-markdown h1 {
+  color: #e6f4ea;
+  border-bottom: 1px solid #00c853;
+}
+
+.theme-doc-markdown h2 {
+  color: #e6f4ea;
+  border-bottom: 1px solid #1a232a;
+}
+
+.theme-doc-markdown h3 {
+  color: #e6f4ea;
+}
+
+.theme-doc-markdown h4 {
+  color: #e6f4ea;
+}
+
+/* Style links and interactive elements with theme colors */
+a {
+  color: #00c853;
+}
+
+a:hover {
+  color: #0ed159;
+  text-decoration: underline;
+}
+
+/* Style code blocks with black-and-green theme */
+pre {
+  background-color: #1a232a;
+  border: 1px solid #1a232a;
+  border-radius: 8px;
+  padding: 16px;
+  overflow: auto;
+}
+
+pre code {
+  background: none;
+  color: #e6f4ea;
+  padding: 0;
+}
+
+/* Style inline code elements with theme colors */
+code {
+  background-color: #1a232a;
+  color: #e6f4ea;
+  border: 1px solid #1a232a;
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+
+/* Style admonitions (callouts) to match theme */
+.admonition {
+  border: 1px solid #1a232a;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.admonition--note {
+  background-color: #1a232a;
+  border-left: 4px solid #00c853;
+}
+
+.admonition--tip {
+  background-color: #1a232a;
+  border-left: 4px solid #00c853;
+}
+
+.admonition--caution {
+  background-color: #1a232a;
+  border-left: 4px solid #ff8a65;
+}
+
+.admonition--danger {
+  background-color: #1a232a;
+  border-left: 4px solid #ff5252;
+}
+
+.admonition h5 {
+  color: #e6f4ea;
+  margin-top: 0;
+}
+
+/* Style pagination controls with theme colors */
+.pagination-nav__link {
+  border: 1px solid #1a232a;
+  border-radius: 8px;
+  padding: 16px;
+  transition: border-color 0.2s ease;
+}
+
+.pagination-nav__link:hover {
+  border-color: #00c853;
+}
+
+.pagination-nav__label {
+  color: #00c853;
+}
+
+.pagination-nav__sublabel {
+  color: #c2e3d2;
+}
+
+/* Style tables to match the black-and-green theme */
+.table-wrapper {
+  overflow: auto;
+}
+
+table {
+  background-color: #1a232a;
+  border-collapse: collapse;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+table th {
+  background-color: #0b0f14;
+  color: #e6f4ea;
+  border: 1px solid #1a232a;
+  padding: 12px 16px;
+  font-weight: 600;
+}
+
+table td {
+  border: 1px solid #1a232a;
+  padding: 12px 16px;
+  color: #e6f4ea;
+}
+
+table tr:nth-child(even) {
+  background-color: #1a232a;
+}
+
+table tr:hover {
+  background-color: #252d37;
+}
+
+/* Responsive design for different screen sizes */
+@media (max-width: 996px) {
+  .navbar-sidebar {
+    background-color: #0b0f14;
+  }
 }

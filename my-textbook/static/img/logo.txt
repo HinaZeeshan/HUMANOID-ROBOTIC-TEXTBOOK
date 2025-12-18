@@ -1,0 +1,2 @@
+Placeholder for PNG version of the logo.
+The actual PNG would be generated from the SVG file using image processing tools.

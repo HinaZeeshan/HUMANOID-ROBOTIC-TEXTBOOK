@@ -1,0 +1,147 @@
+# RAG Chatbot API Contract
+
+## POST /api/query
+
+**Description**: Endpoint to query the book content using RAG (Retrieval Augmented Generation)
+
+**Request**:
+- Method: POST
+- Content-Type: application/json
+- URL: `/api/query`
+
+**Request Body**:
+```json
+{
+  "question": "string (required) - The user's question about the book content",
+  "selected_text": "string (optional) - Text selected by user for context, if any",
+  "session_id": "string (optional) - Session identifier for conversation context",
+  "query_type": "string (optional) - Either 'full_book' or 'selected_text_only', defaults to 'full_book'"
+}
+```
+
+**Response**:
+- Status: 200 OK
+- Content-Type: application/json
+
+```json
+{
+  "answer": "string - The generated answer to the user's question",
+  "source_citations": [
+    {
+      "section_id": "string - ID of the book section used",
+      "title": "string - Title of the referenced section",
+      "location": "string - Path/identifier for where this section exists in the book"
+    }
+  ],
+  "session_id": "string - Session identifier (newly created if not provided)"
+}
+```
+
+**Error Responses**:
+- 400 Bad Request: Invalid request body format
+- 422 Unprocessable Entity: Missing required fields
+- 500 Internal Server Error: Server error during processing
+
+**Example Request**:
+```json
+{
+  "question": "What are the key principles of humanoid locomotion?",
+  "query_type": "full_book"
+}
+```
+
+**Example Response**:
+```json
+{
+  "answer": "The key principles of humanoid locomotion include...",
+  "source_citations": [
+    {
+      "section_id": "ch3-locomotion-section1",
+      "title": "Principles of Humanoid Locomotion",
+      "location": "docs/03-motion-planning.md#principles"
+    }
+  ],
+  "session_id": "sess-abc123def456"
+}
+```
+
+---
+
+## POST /api/query-selected-text
+
+**Description**: Endpoint to query specifically selected text in the book
+
+**Request**:
+- Method: POST
+- Content-Type: application/json
+- URL: `/api/query-selected-text`
+
+**Request Body**:
+```json
+{
+  "question": "string (required) - The user's question about the selected text",
+  "selected_text": "string (required) - The text that was selected by the user",
+  "session_id": "string (optional) - Session identifier for conversation context"
+}
+```
+
+**Response**:
+- Status: 200 OK
+- Content-Type: application/json
+
+```json
+{
+  "answer": "string - The generated answer based only on the selected text",
+  "source_citations": [
+    {
+      "section_id": "string - ID of the book section used",
+      "title": "string - Title of the referenced section",
+      "location": "string - Path/identifier for where this section exists in the book"
+    }
+  ],
+  "session_id": "string - Session identifier (newly created if not provided)"
+}
+```
+
+**Error Responses**:
+- 400 Bad Request: Invalid request body format
+- 422 Unprocessable Entity: Missing required fields (especially selected_text)
+- 500 Internal Server Error: Server error during processing
+
+---
+
+## GET /api/sessions/{session_id}
+
+**Description**: Retrieve a specific chat session with its messages
+
+**Request**:
+- Method: GET
+- URL: `/api/sessions/{session_id}`
+
+**Path Parameters**:
+- `session_id`: string - The ID of the session to retrieve
+
+**Response**:
+- Status: 200 OK
+- Content-Type: application/json
+
+```json
+{
+  "session_id": "string - The session identifier",
+  "created_at": "timestamp - When the session was created",
+  "updated_at": "timestamp - When the session was last updated",
+  "messages": [
+    {
+      "id": "string - Message identifier",
+      "role": "string - Either 'user' or 'assistant'",
+      "content": "string - The message content",
+      "timestamp": "timestamp - When the message was created",
+      "source_citations": "array - Citations if this is an assistant message"
+    }
+  ]
+}
+```
+
+**Error Responses**:
+- 404 Not Found: Session with given ID does not exist
+- 500 Internal Server Error: Server error during processing

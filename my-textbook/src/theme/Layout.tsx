@@ -1,5 +1,5 @@
  import React, { JSX } from 'react';
- import Layout from '@theme-init/Layout';
+ import Layout from '@theme-original/Layout';
  import Chatbot from '../components/Chatbot'; // Import your Chatbot component
  
  export default function MyLayout(props: { children: React.ReactNode }): JSX.Element {
