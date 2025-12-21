@@ -335,10 +335,10 @@ def jacobian_ik_step(jacobian, target_velocity, alpha=0.01):
 
 The Denavit-Hartenberg convention defines four parameters for each joint:
 
-1. **a_i** (link length): Distance along x_i from z_i to z_{i+1}
-2. **α_i** (link twist): Angle between z_i and z_{i+1} around x_i
-3. **d_i** (link offset): Distance along z_i from x_i to x_{i+1}
-4. **θ_i** (joint angle): Angle between x_i and x_{i+1} around z_i
+1. **a_i** (link length): Distance along x_i from z_i to z_\{i+1\}
+2. **α_i** (link twist): Angle between z_i and z_\{i+1\} around x_i
+3. **d_i** (link offset): Distance along z_i from x_i to x_\{i+1\}
+4. **θ_i** (joint angle): Angle between x_i and x_\{i+1\} around z_i
 
 ### Humanoid DH Parameter Examples
 
