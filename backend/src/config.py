@@ -16,7 +16,7 @@ class Settings(BaseSettings):
     debug: bool = False
 
     # CORS settings
-    backend_cors_origins: List[str] = []
+    backend_cors_origins: List[str] = ["*"]
 
     # Database settings
     neon_database_url: str
