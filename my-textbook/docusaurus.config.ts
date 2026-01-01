@@ -1,5 +1,5 @@
-import {themes as prismThemes} from 'prism-react-renderer';
-import type {Config} from '@docusaurus/types';
+import { themes as prismThemes } from 'prism-react-renderer';
+import type { Config } from '@docusaurus/types';
 import type * as Preset from '@docusaurus/preset-classic';
 
 // This runs in Node.js - Don't use client-side code here (browser APIs, JSX...)
@@ -15,7 +15,7 @@ const config: Config = {
   },
 
   // Set the production url of your site here
-  url: 'https://your-docusaurus-site.example.com',
+  url: 'https://humanoid-robotic-textbook-2ynn.vercel.app',
   // Set the /<baseUrl>/ pathname under which your site is served
   // For GitHub pages deployment, it is often '/<projectName>/'
   baseUrl: '/',
@@ -85,7 +85,7 @@ const config: Config = {
           type: 'docSidebar',
           sidebarId: 'tutorialSidebar',
           position: 'left',
-          label: 'Chapters',
+          label: 'Textbook',
         },
         // {to: '/blog', label: 'Blog', position: 'left'},
         {
@@ -102,7 +102,7 @@ const config: Config = {
           title: 'Docs',
           items: [
             {
-              label: 'Chapters',
+              label: 'Textbook',
               to: '/docs/intro',
             },
           ],
@@ -164,90 +164,3 @@ export default config;
 
 
 
-
-
-
-
-
-
-
-
-
-// import {themes as prismThemes} from 'prism-react-renderer';
-// import type {Config} from '@docusaurus/types';
-// import type * as Preset from '@docusaurus/preset-classic';
-
-// const config: Config = {
-//   title: 'Humanoid Robotics Textbook',
-//   tagline: 'An Interactive Textbook on Physical AI',
-//   favicon: 'img/favicon.ico',
-
-//   // Set the production url of your site here
-//   url: 'https://HinaZeeshan.github.io',
-
-//   // For GitHub pages deployment: '/<projectName>/'
-//   baseUrl: '/HUMANOID-ROBOTIC-TEXTBOOK/',
-
-//   // GitHub pages deployment config
-//   organizationName: 'HinaZeeshan',
-//   projectName: 'HUMANOID-ROBOTIC-TEXTBOOK',
-
-//   onBrokenLinks: 'throw',
-//   onBrokenMarkdownLinks: 'warn',
-
-//   i18n: {
-//     defaultLocale: 'en',
-//     locales: ['en'],
-//   },
-
-//   presets: [
-//     [
-//       'classic',
-//       {
-//         docs: {
-//           path: 'docs',
-//           sidebarPath: './sidebars.ts',
-//           routeBasePath: 'docs', // Serve docs at /docs route
-//         },
-//         blog: false,
-//         theme: {
-//           customCss: './src/css/custom.css',
-//         },
-//       } satisfies Preset.Options,
-//     ],
-//   ],
-
-//   themeConfig: {
-//     navbar: {
-//       title: 'Humanoid Robotics Textbook',
-//       logo: {
-//         alt: 'My Site Logo',
-//         src: 'img/logo.svg',
-//       },
-//       items: [
-//         {
-//           type: 'docSidebar',
-//           sidebarId: 'tutorialSidebar',
-//           position: 'left',
-//           label: 'Tutorial',
-//         },
-//         {
-//           href: 'https://github.com/HinaZeeshan/humanoid-robotics-textbook', 
-//           label: 'GitHub',
-//           position: 'right',
-//         },
-//       ],
-//     },
-//     footer: {
-//       style: 'dark',
-//       links: [],
-//       copyright: `Copyright © ${new Date().getFullYear()} Humanoid Robotics Textbook. Built with Docusaurus.`,
-//     },
-//     prism: {
-//       theme: prismThemes.github,
-//       darkTheme: prismThemes.dracula,
-//     },
-//   } satisfies Preset.ThemeConfig,
-// };
-
-// export default config;

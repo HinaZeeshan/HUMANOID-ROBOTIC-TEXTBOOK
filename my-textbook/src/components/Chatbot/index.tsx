@@ -5,6 +5,7 @@ import MessageBubble from './MessageBubble';
 import MessageInput from './MessageInput';
 import LoadingIndicator from './LoadingIndicator';
 import styles from './styles.module.css';
+import { API_BASE_URL } from '../../config';
 
 interface Message {
     id: string;
@@ -97,7 +98,7 @@ export default function Chatbot() {
                 }
             }
 
-            const response = await fetch('http://localhost:8000/api/v1/query', {
+            const response = await fetch(`${API_BASE_URL}/api/v1/query`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({

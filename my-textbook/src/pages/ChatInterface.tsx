@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useLocation } from '@docusaurus/router';
 import { FiSend, FiX, FiMessageSquare, FiInfo, FiBook, FiZap, FiGlobe } from 'react-icons/fi';
+import { API_BASE_URL } from '../config';
 
 interface Message {
   id: string;
@@ -78,16 +79,16 @@ const ChatInterface: React.FC = () => {
     try {
       // Determine if this is a cross-module query
       const isCrossModuleQuery = inputValue.toLowerCase().includes('from') &&
-                                (inputValue.toLowerCase().includes('to') ||
-                                 inputValue.toLowerCase().includes('then')) &&
-                                (inputValue.toLowerCase().includes('voice') ||
-                                 inputValue.toLowerCase().includes('navigate') ||
-                                 inputValue.toLowerCase().includes('perceive') ||
-                                 inputValue.toLowerCase().includes('plan') ||
-                                 inputValue.toLowerCase().includes('execute'));
+        (inputValue.toLowerCase().includes('to') ||
+          inputValue.toLowerCase().includes('then')) &&
+        (inputValue.toLowerCase().includes('voice') ||
+          inputValue.toLowerCase().includes('navigate') ||
+          inputValue.toLowerCase().includes('perceive') ||
+          inputValue.toLowerCase().includes('plan') ||
+          inputValue.toLowerCase().includes('execute'));
 
       // Call the backend API with cross-module support
-      const response = await fetch('http://localhost:8000/api/v1/rag/query', {
+      const response = await fetch(`${API_BASE_URL}/api/v1/rag/query`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -188,51 +189,46 @@ const ChatInterface: React.FC = () => {
               <div className="flex flex-wrap gap-2">
                 <button
                   onClick={() => setSelectedModule('all')}
-                  className={`px-3 py-1 rounded-full text-sm font-medium transition-colors ${
-                    selectedModule === 'all'
-                      ? 'bg-blue-600 text-white'
-                      : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
-                  }`}
+                  className={`px-3 py-1 rounded-full text-sm font-medium transition-colors ${selectedModule === 'all'
+                    ? 'bg-blue-600 text-white'
+                    : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
+                    }`}
                 >
                   <FiGlobe className="inline mr-1" /> All
                 </button>
                 <button
                   onClick={() => setSelectedModule('module-1')}
-                  className={`px-3 py-1 rounded-full text-sm font-medium transition-colors flex items-center ${
-                    selectedModule === 'module-1'
-                      ? 'bg-green-600 text-white'
-                      : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
-                  }`}
+                  className={`px-3 py-1 rounded-full text-sm font-medium transition-colors flex items-center ${selectedModule === 'module-1'
+                    ? 'bg-green-600 text-white'
+                    : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
+                    }`}
                 >
                   <FiBook className="inline mr-1" /> ROS 2
                 </button>
                 <button
                   onClick={() => setSelectedModule('module-2')}
-                  className={`px-3 py-1 rounded-full text-sm font-medium transition-colors flex items-center ${
-                    selectedModule === 'module-2'
-                      ? 'bg-purple-600 text-white'
-                      : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
-                  }`}
+                  className={`px-3 py-1 rounded-full text-sm font-medium transition-colors flex items-center ${selectedModule === 'module-2'
+                    ? 'bg-purple-600 text-white'
+                    : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
+                    }`}
                 >
                   <FiZap className="inline mr-1" /> Sim
                 </button>
                 <button
                   onClick={() => setSelectedModule('module-3')}
-                  className={`px-3 py-1 rounded-full text-sm font-medium transition-colors flex items-center ${
-                    selectedModule === 'module-3'
-                      ? 'bg-yellow-600 text-white'
-                      : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
-                  }`}
+                  className={`px-3 py-1 rounded-full text-sm font-medium transition-colors flex items-center ${selectedModule === 'module-3'
+                    ? 'bg-yellow-600 text-white'
+                    : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
+                    }`}
                 >
                   <FiZap className="inline mr-1" /> AI Brain
                 </button>
                 <button
                   onClick={() => setSelectedModule('module-4')}
-                  className={`px-3 py-1 rounded-full text-sm font-medium transition-colors flex items-center ${
-                    selectedModule === 'module-4'
-                      ? 'bg-red-600 text-white'
-                      : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
-                  }`}
+                  className={`px-3 py-1 rounded-full text-sm font-medium transition-colors flex items-center ${selectedModule === 'module-4'
+                    ? 'bg-red-600 text-white'
+                    : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
+                    }`}
                 >
                   <FiZap className="inline mr-1" /> VLA
                 </button>
@@ -251,11 +247,10 @@ const ChatInterface: React.FC = () => {
                     className={`mb-6 flex ${message.role === 'user' ? 'justify-end' : 'justify-start'}`}
                   >
                     <div
-                      className={`max-w-[85%] rounded-2xl p-4 ${
-                        message.role === 'user'
-                          ? 'bg-blue-500 text-white rounded-br-none'
-                          : 'bg-white text-gray-800 border border-gray-200 rounded-bl-none shadow-sm'
-                      }`}
+                      className={`max-w-[85%] rounded-2xl p-4 ${message.role === 'user'
+                        ? 'bg-blue-500 text-white rounded-br-none'
+                        : 'bg-white text-gray-800 border border-gray-200 rounded-bl-none shadow-sm'
+                        }`}
                     >
                       <div className="font-medium mb-1">
                         {message.role === 'user' ? 'You' : 'Robotics Assistant'}
@@ -317,9 +312,8 @@ const ChatInterface: React.FC = () => {
                     <button
                       onClick={handleSendMessage}
                       disabled={isLoading || !inputValue.trim()}
-                      className={`bg-blue-600 text-white px-6 py-3 rounded-r-lg flex items-center ${
-                        isLoading || !inputValue.trim() ? 'opacity-50 cursor-not-allowed' : 'hover:bg-blue-700'
-                      }`}
+                      className={`bg-blue-600 text-white px-6 py-3 rounded-r-lg flex items-center ${isLoading || !inputValue.trim() ? 'opacity-50 cursor-not-allowed' : 'hover:bg-blue-700'
+                        }`}
                     >
                       <FiSend className="mr-2" />
                       Send
